@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Хирагана и Катакана</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin: 20px 0 10px;
+        }
+
+        .kana__row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .kana__card-block {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            width: 100px;
+            padding: 15px;
+            text-align: center;
+            background: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .kana__card-block:hover {
+            transform: scale(1.05);
+        }
+
+        .kana__card-block h3.ieroglyph {
+            font-size: 32px;
+            margin: 0;
+        }
+
+        .kana__card-block span {
+            font-size: 18px;
+            color: #444;
+        }
+
+        button {
+            margin-top: 8px;
+            padding: 4px 8px;
+            border: none;
+            border-radius: 6px;
+            background: #0077ff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #005fcc;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Хирагана и Катакана</h1>
+
+<div id="hiragana"></div>
+<div id="katakana"></div>
+
+<script>
+    const hiragana = {
+        "あ行": [
+            { kana: "あ", romaji: "a" }, { kana: "い", romaji: "i" },
+            { kana: "う", romaji: "u" }, { kana: "え", romaji: "e" },
+            { kana: "お", romaji: "o" }
+        ],
+        "か行": [
+            { kana: "か", romaji: "ka" }, { kana: "き", romaji: "ki" },
+            { kana: "く", romaji: "ku" }, { kana: "け", romaji: "ke" },
+            { kana: "こ", romaji: "ko" }
+        ],
+        "さ行": [
+            { kana: "さ", romaji: "sa" }, { kana: "し", romaji: "shi" },
+            { kana: "す", romaji: "su" }, { kana: "せ", romaji: "se" },
+            { kana: "そ", romaji: "so" }
+        ],
+        "た行": [
+            { kana: "た", romaji: "ta" }, { kana: "ち", romaji: "chi" },
+            { kana: "つ", romaji: "tsu" }, { kana: "て", romaji: "te" },
+            { kana: "と", romaji: "to" }
+        ],
+        "な行": [
+            { kana: "な", romaji: "na" }, { kana: "に", romaji: "ni" },
+            { kana: "ぬ", romaji: "nu" }, { kana: "ね", romaji: "ne" },
+            { kana: "の", romaji: "no" }
+        ],
+        "は行": [
+            { kana: "は", romaji: "ha" }, { kana: "ひ", romaji: "hi" },
+            { kana: "ふ", romaji: "fu" }, { kana: "へ", romaji: "he" },
+            { kana: "ほ", romaji: "ho" }
+        ],
+        "ま行": [
+            { kana: "ま", romaji: "ma" }, { kana: "み", romaji: "mi" },
+            { kana: "む", romaji: "mu" }, { kana: "め", romaji: "me" },
+            { kana: "も", romaji: "mo" }
+        ],
+        "や行": [
+            { kana: "や", romaji: "ya" }, { kana: "ゆ", romaji: "yu" },
+            { kana: "よ", romaji: "yo" }
+        ],
+        "ら行": [
+            { kana: "ら", romaji: "ra" }, { kana: "り", romaji: "ri" },
+            { kana: "る", romaji: "ru" }, { kana: "れ", romaji: "re" },
+            { kana: "ろ", romaji: "ro" }
+        ],
+        "わ行": [
+            { kana: "わ", romaji: "wa" }, { kana: "を", romaji: "wo" },
+            { kana: "ん", romaji: "n" }
+        ]
+    };
+
+    const katakana = {
+        "ア行": [
+            { kana: "ア", romaji: "a" }, { kana: "イ", romaji: "i" },
+            { kana: "ウ", romaji: "u" }, { kana: "エ", romaji: "e" },
+            { kana: "オ", romaji: "o" }
+        ],
+        "カ行": [
+            { kana: "カ", romaji: "ka" }, { kana: "キ", romaji: "ki" },
+            { kana: "ク", romaji: "ku" }, { kana: "ケ", romaji: "ke" },
+            { kana: "コ", romaji: "ko" }
+        ],
+        "サ行": [
+            { kana: "サ", romaji: "sa" }, { kana: "シ", romaji: "shi" },
+            { kana: "ス", romaji: "su" }, { kana: "セ", romaji: "se" },
+            { kana: "ソ", romaji: "so" }
+        ],
+        "タ行": [
+            { kana: "タ", romaji: "ta" }, { kana: "チ", romaji: "chi" },
+            { kana: "ツ", romaji: "tsu" }, { kana: "テ", romaji: "te" },
+            { kana: "ト", romaji: "to" }
+        ],
+        "ナ行": [
+            { kana: "ナ", romaji: "na" }, { kana: "ニ", romaji: "ni" },
+            { kana: "ヌ", romaji: "nu" }, { kana: "ネ", romaji: "ne" },
+            { kana: "ノ", romaji: "no" }
+        ],
+        "ハ行": [
+            { kana: "ハ", romaji: "ha" }, { kana: "ヒ", romaji: "hi" },
+            { kana: "フ", romaji: "fu" }, { kana: "ヘ", romaji: "he" },
+            { kana: "ホ", romaji: "ho" }
+        ],
+        "マ行": [
+            { kana: "マ", romaji: "ma" }, { kana: "ミ", romaji: "mi" },
+            { kana: "ム", romaji: "mu" }, { kana: "メ", romaji: "me" },
+            { kana: "モ", romaji: "mo" }
+        ],
+        "ヤ行": [
+            { kana: "ヤ", romaji: "ya" }, { kana: "ユ", romaji: "yu" },
+            { kana: "ヨ", romaji: "yo" }
+        ],
+        "ラ行": [
+            { kana: "ラ", romaji: "ra" }, { kana: "リ", romaji: "ri" },
+            { kana: "ル", romaji: "ru" }, { kana: "レ", romaji: "re" },
+            { kana: "ロ", romaji: "ro" }
+        ],
+        "ワ行": [
+            { kana: "ワ", romaji: "wa" }, { kana: "ヲ", romaji: "wo" },
+            { kana: "ン", romaji: "n" }
+        ]
+    };
+
+    function renderKana(containerId, data, title) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = `<h1>${title}</h1>`;
+
+        for (let row in data) {
+            container.innerHTML += `<h2>${row}</h2><div class="kana__row"></div>`;
+            const rowContainer = container.lastElementChild;
+
+            data[row].forEach(k => {
+                rowContainer.innerHTML += `
+        <div class="kana__card-block">
+          <h3 class="ieroglyph">${k.kana}</h3>
+          <span>[${k.romaji}]</span>
+          <button onclick="playKana('${k.kana}')">▶️</button>
+        </div>
+      `;
+            });
+        }
+    }
+
+    function playKana(symbol) {
+        const utterance = new SpeechSynthesisUtterance(symbol);
+        utterance.lang = "ja-JP";
+        utterance.rate = 0.9;
+        speechSynthesis.speak(utterance);
+    }
+
+    renderKana("hiragana", hiragana, "Хирагана");
+    renderKana("katakana", katakana, "Катакана");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+
+
+</head>
+<body>
+<header class="header">
+    <div class="board-top">
+        <a href="/" class="logotype"><h1>Manga Bridge</h1></a>
+        <ul class="menu__list-top">
+            <li class="menu__item"><a href="#">Сообщество</a></li>
+            <li class="menu__item"><a href="#">Чат</a></li>
+        </ul>
+        <div class="community__Navbar">
+            <div class="inputGroup">
+                <label for="searchField"></label>
+                <input type="text" name="searchField" id="searchField" autocomplete="off" placeholder="Search members by name or topics. For example: language, music, corona, travel, art, football, games, university, work, berlin">
+                <button class="search__Button" type="submit">🔍</button>
+            </div>
+        </div>
+        <nav class="nav__board-top" role="navigation">
+            <div class="notification__profile ">
+                <img class="notification" src="/assets/img/notification.png" alt="notification" loading="lazy" width="40" height="40">
+          </div>
+            <div class="avatar-menu">
+                <img src="https://i.pravatar.cc/40" alt="avatar" class="avatar" tabindex="0" >
+                <ul class="menu__list hidden">
+                    <li class="menu__item"><a href="#">Профиль</a></li>
+                    <li class="menu__item"><a href="#">Сообщения</a></li>
+                    <li class="menu__item"><a href="#">Изучение</a></li>
+                    <li class="menu__item"><a href="#">Настройки</a></li>
+                    <li class="menu__item"><a href="#">Выход</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main class="main">
+    <div class="community__Grid"></div>
+</main>
+<footer class="footer">
+    Icons by <a href="https://icons8.com">Icons8</a>
+</footer>
+<script src="js/index.js" type="module"></script>
+</body>
+</html>
